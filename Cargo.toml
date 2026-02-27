@@ -1,0 +1,12 @@
+[package]
+name = "raspberry-haliort-ffi"
+version = "0.1.0"
+edition = "2024"
+description = "Raw FFI bindings to the HailoRT runtime library for the Hailo AI HAT on Raspberry Pi"
+license = "MIT"
+
+[lib]
+name = "hailort_sys"
+
+[build-dependencies]
+pkg-config = "0.3"
