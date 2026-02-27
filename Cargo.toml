@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 description = "Raw FFI bindings to the HailoRT C runtime library"
 license = "MIT"
+repository = "https://github.com/quinnjr/hailort-sys"
 
 [lib]
 name = "hailort_sys"
