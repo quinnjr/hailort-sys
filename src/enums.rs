@@ -275,3 +275,249 @@ pub const HAILO_FW_LOGGER_LEVEL_INFO: hailo_fw_logger_level_t = 2;
 pub const HAILO_FW_LOGGER_LEVEL_WARN: hailo_fw_logger_level_t = 3;
 pub const HAILO_FW_LOGGER_LEVEL_ERROR: hailo_fw_logger_level_t = 4;
 pub const HAILO_FW_LOGGER_LEVEL_FATAL: hailo_fw_logger_level_t = 5;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::os::raw::c_int;
+
+    #[test]
+    fn power_measurement_enum_values() {
+        assert_eq!(HAILO_DVM_OPTIONS_VDD_CORE, 0);
+        assert_eq!(HAILO_DVM_OPTIONS_VDD_IO, 1);
+        assert_eq!(HAILO_DVM_OPTIONS_MIPI_AVDD, 2);
+        assert_eq!(HAILO_DVM_OPTIONS_MIPI_AVDD_H, 3);
+        assert_eq!(HAILO_DVM_OPTIONS_USB_AVDD_IO, 4);
+        assert_eq!(HAILO_DVM_OPTIONS_VDD_TOP, 5);
+        assert_eq!(HAILO_DVM_OPTIONS_USB_AVDD_IO_HV, 6);
+        assert_eq!(HAILO_DVM_OPTIONS_AVDD_H, 7);
+        assert_eq!(HAILO_DVM_OPTIONS_SDIO_VDD_IO, 8);
+        assert_eq!(HAILO_DVM_OPTIONS_OVERCURRENT_PROTECTION, 9);
+        assert_eq!(HAILO_DVM_OPTIONS_COUNT, 10);
+        assert_eq!(HAILO_DVM_OPTIONS_AUTO, c_int::MAX);
+
+        assert_eq!(HAILO_POWER_MEASUREMENT_TYPES__SHUNT_VOLTAGE, 0);
+        assert_eq!(HAILO_POWER_MEASUREMENT_TYPES__BUS_VOLTAGE, 1);
+        assert_eq!(HAILO_POWER_MEASUREMENT_TYPES__POWER, 2);
+        assert_eq!(HAILO_POWER_MEASUREMENT_TYPES__CURRENT, 3);
+        assert_eq!(HAILO_POWER_MEASUREMENT_TYPES__COUNT, 4);
+        assert_eq!(HAILO_POWER_MEASUREMENT_TYPES__AUTO, c_int::MAX);
+
+        assert_eq!(HAILO_SAMPLING_PERIOD_140US, 0);
+        assert_eq!(HAILO_SAMPLING_PERIOD_204US, 1);
+        assert_eq!(HAILO_SAMPLING_PERIOD_332US, 2);
+        assert_eq!(HAILO_SAMPLING_PERIOD_588US, 3);
+        assert_eq!(HAILO_SAMPLING_PERIOD_1100US, 4);
+        assert_eq!(HAILO_SAMPLING_PERIOD_2116US, 5);
+        assert_eq!(HAILO_SAMPLING_PERIOD_4156US, 6);
+        assert_eq!(HAILO_SAMPLING_PERIOD_8244US, 7);
+
+        assert_eq!(HAILO_AVERAGE_FACTOR_1, 0);
+        assert_eq!(HAILO_AVERAGE_FACTOR_4, 1);
+        assert_eq!(HAILO_AVERAGE_FACTOR_16, 2);
+        assert_eq!(HAILO_AVERAGE_FACTOR_64, 3);
+        assert_eq!(HAILO_AVERAGE_FACTOR_128, 4);
+        assert_eq!(HAILO_AVERAGE_FACTOR_256, 5);
+        assert_eq!(HAILO_AVERAGE_FACTOR_512, 6);
+        assert_eq!(HAILO_AVERAGE_FACTOR_1024, 7);
+
+        assert_eq!(HAILO_MEASUREMENT_BUFFER_INDEX_0, 0);
+        assert_eq!(HAILO_MEASUREMENT_BUFFER_INDEX_1, 1);
+        assert_eq!(HAILO_MEASUREMENT_BUFFER_INDEX_2, 2);
+        assert_eq!(HAILO_MEASUREMENT_BUFFER_INDEX_3, 3);
+
+        assert_eq!(HAILO_POWER_MODE_PERFORMANCE, 0);
+        assert_eq!(HAILO_POWER_MODE_ULTRA_PERFORMANCE, 1);
+    }
+
+    #[test]
+    fn device_identity_enum_values() {
+        assert_eq!(HAILO_DEVICE_TYPE_PCIE, 0);
+        assert_eq!(HAILO_DEVICE_TYPE_ETH, 1);
+        assert_eq!(HAILO_DEVICE_TYPE_INTEGRATED, 2);
+
+        assert_eq!(HAILO_ARCH_HAILO8_A0, 0);
+        assert_eq!(HAILO_ARCH_HAILO8, 1);
+        assert_eq!(HAILO_ARCH_HAILO8L, 2);
+        assert_eq!(HAILO_ARCH_HAILO15H, 3);
+        assert_eq!(HAILO_ARCH_HAILO15L, 4);
+        assert_eq!(HAILO_ARCH_HAILO15M, 5);
+        assert_eq!(HAILO_ARCH_HAILO10H, 6);
+        assert_eq!(HAILO_ARCH_HAILO12L, 7);
+
+        assert_eq!(HAILO_DEVICE_BOOT_SOURCE_INVALID, 0);
+        assert_eq!(HAILO_DEVICE_BOOT_SOURCE_PCIE, 1);
+        assert_eq!(HAILO_DEVICE_BOOT_SOURCE_FLASH, 2);
+
+        assert_eq!(HAILO_CPU_ID_0, 0);
+        assert_eq!(HAILO_CPU_ID_1, 1);
+
+        assert_eq!(HAILO_SCHEDULING_ALGORITHM_NONE, 0);
+        assert_eq!(HAILO_SCHEDULING_ALGORITHM_ROUND_ROBIN, 1);
+
+        assert_eq!(HAILO_RESET_DEVICE_MODE_CHIP, 0);
+        assert_eq!(HAILO_RESET_DEVICE_MODE_NN_CORE, 1);
+        assert_eq!(HAILO_RESET_DEVICE_MODE_SOFT, 2);
+        assert_eq!(HAILO_RESET_DEVICE_MODE_FORCED_SOFT, 3);
+        assert_eq!(HAILO_RESET_DEVICE_MODE_REBOOT, 4);
+
+        assert_eq!(HAILO_WATCHDOG_MODE_HW_SW, 0);
+        assert_eq!(HAILO_WATCHDOG_MODE_HW_ONLY, 1);
+    }
+
+    #[test]
+    fn data_format_enum_values() {
+        assert_eq!(HAILO_BIG_ENDIAN, 0);
+        assert_eq!(HAILO_LITTLE_ENDIAN, 1);
+
+        assert_eq!(HAILO_FORMAT_TYPE_AUTO, 0);
+        assert_eq!(HAILO_FORMAT_TYPE_UINT8, 1);
+        assert_eq!(HAILO_FORMAT_TYPE_UINT16, 2);
+        assert_eq!(HAILO_FORMAT_TYPE_FLOAT32, 3);
+
+        assert_eq!(HAILO_FORMAT_ORDER_AUTO, 0);
+        assert_eq!(HAILO_FORMAT_ORDER_NHWC, 1);
+        assert_eq!(HAILO_FORMAT_ORDER_NHCW, 2);
+        assert_eq!(HAILO_FORMAT_ORDER_FCR, 3);
+        assert_eq!(HAILO_FORMAT_ORDER_F8CR, 4);
+        assert_eq!(HAILO_FORMAT_ORDER_NHW, 5);
+        assert_eq!(HAILO_FORMAT_ORDER_NC, 6);
+        assert_eq!(HAILO_FORMAT_ORDER_BAYER_RGB, 7);
+        assert_eq!(HAILO_FORMAT_ORDER_12_BIT_BAYER_RGB, 8);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_NMS, 9);
+        assert_eq!(HAILO_FORMAT_ORDER_RGB888, 10);
+        assert_eq!(HAILO_FORMAT_ORDER_NCHW, 11);
+        assert_eq!(HAILO_FORMAT_ORDER_YUY2, 12);
+        assert_eq!(HAILO_FORMAT_ORDER_NV12, 13);
+        assert_eq!(HAILO_FORMAT_ORDER_NV21, 14);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_YYUV, 15);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_YYVU, 16);
+        assert_eq!(HAILO_FORMAT_ORDER_RGB4, 17);
+        assert_eq!(HAILO_FORMAT_ORDER_I420, 18);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_YYYYUV, 19);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_NMS_WITH_BYTE_MASK, 20);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_NMS_ON_CHIP, 21);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_NMS_BY_CLASS, 22);
+        assert_eq!(HAILO_FORMAT_ORDER_HAILO_NMS_BY_SCORE, 23);
+
+        assert_eq!(HAILO_FORMAT_FLAGS_NONE, 0);
+        assert_eq!(HAILO_FORMAT_FLAGS_QUANTIZED, 1);
+        assert_eq!(HAILO_FORMAT_FLAGS_TRANSPOSED, 2);
+    }
+
+    #[test]
+    fn stream_enum_values() {
+        assert_eq!(HAILO_STREAM_NO_TRANSFORM, 0);
+        assert_eq!(HAILO_STREAM_TRANSFORM_COPY, 1);
+
+        assert_eq!(HAILO_H2D_STREAM, 0);
+        assert_eq!(HAILO_D2H_STREAM, 1);
+
+        assert_eq!(HAILO_STREAM_FLAGS_NONE, 0);
+        assert_eq!(HAILO_STREAM_FLAGS_ASYNC, 1);
+
+        assert_eq!(HAILO_STREAM_INTERFACE_PCIE, 0);
+        assert_eq!(HAILO_STREAM_INTERFACE_ETH, 1);
+        assert_eq!(HAILO_STREAM_INTERFACE_MIPI, 2);
+        assert_eq!(HAILO_STREAM_INTERFACE_INTEGRATED, 3);
+
+        assert_eq!(HAILO_LATENCY_NONE, 0);
+        assert_eq!(HAILO_LATENCY_MEASURE, 1);
+        assert_eq!(HAILO_LATENCY_CLEAR_AFTER_GET, 2);
+    }
+
+    #[test]
+    fn vstream_enum_values() {
+        assert_eq!(HAILO_VSTREAM_STATS_NONE, 0);
+        assert_eq!(HAILO_VSTREAM_STATS_MEASURE_FPS, 1);
+        assert_eq!(HAILO_VSTREAM_STATS_MEASURE_LATENCY, 2);
+
+        assert_eq!(HAILO_PIPELINE_ELEM_STATS_NONE, 0);
+        assert_eq!(HAILO_PIPELINE_ELEM_STATS_MEASURE_FPS, 1);
+        assert_eq!(HAILO_PIPELINE_ELEM_STATS_MEASURE_LATENCY, 2);
+        assert_eq!(HAILO_PIPELINE_ELEM_STATS_MEASURE_QUEUE_SIZE, 4);
+    }
+
+    #[test]
+    fn buffer_and_dma_enum_values() {
+        assert_eq!(HAILO_DMA_BUFFER_DIRECTION_H2D, 0);
+        assert_eq!(HAILO_DMA_BUFFER_DIRECTION_D2H, 1);
+        assert_eq!(HAILO_DMA_BUFFER_DIRECTION_BOTH, 2);
+
+        assert_eq!(HAILO_BUFFER_FLAGS_NONE, 0);
+        assert_eq!(HAILO_BUFFER_FLAGS_DMA, 1);
+        assert_eq!(HAILO_BUFFER_FLAGS_CONTINUOUS, 2);
+        assert_eq!(HAILO_BUFFER_FLAGS_SHARED_MEMORY, 3);
+
+        assert_eq!(HAILO_PIX_BUFFER_MEMORY_TYPE_USERPTR, 0);
+        assert_eq!(HAILO_PIX_BUFFER_MEMORY_TYPE_DMABUF, 1);
+    }
+
+    #[test]
+    fn nms_enum_values() {
+        assert_eq!(HAILO_BURST_TYPE_H8_BBOX, 0);
+        assert_eq!(HAILO_BURST_TYPE_H15_BBOX, 1);
+        assert_eq!(HAILO_BURST_TYPE_H8_PER_CLASS, 2);
+        assert_eq!(HAILO_BURST_TYPE_H15_PER_CLASS, 3);
+        assert_eq!(HAILO_BURST_TYPE_H15_PER_FRAME, 4);
+        assert_eq!(HAILO_BURST_TYPE_COUNT, 5);
+    }
+
+    #[test]
+    fn health_monitoring_enum_values() {
+        assert_eq!(HAILO_TEMPERATURE_PROTECTION_TEMPERATURE_ZONE__GREEN, 0);
+        assert_eq!(HAILO_TEMPERATURE_PROTECTION_TEMPERATURE_ZONE__ORANGE, 1);
+        assert_eq!(HAILO_TEMPERATURE_PROTECTION_TEMPERATURE_ZONE__RED, 2);
+
+        assert_eq!(HAILO_OVERCURRENT_PROTECTION_OVERCURRENT_ZONE__GREEN, 0);
+        assert_eq!(HAILO_OVERCURRENT_PROTECTION_OVERCURRENT_ZONE__RED, 1);
+
+        assert_eq!(HAILO_THROTTLING_STATE_NONE, 0);
+        assert_eq!(HAILO_THROTTLING_STATE_0_LIGHT, 1);
+        assert_eq!(HAILO_THROTTLING_STATE_1_MEDIUM, 2);
+        assert_eq!(HAILO_THROTTLING_STATE_2_HEAVY, 3);
+        assert_eq!(HAILO_THROTTLING_STATE_3_SEVERE, 4);
+        assert_eq!(HAILO_THROTTLING_STATE_4_STREAMS_OFF, 5);
+        assert_eq!(HAILO_THROTTLING_STATE_OVERHEAT, 6);
+        assert_eq!(HAILO_THROTTLING_STATE_COUNT, 7);
+    }
+
+    #[test]
+    fn notification_enum_values() {
+        assert_eq!(HAILO_NOTIFICATION_ID_ETHERNET_RX_ERROR, 0);
+        assert_eq!(HAILO_NOTIFICATION_ID_HEALTH_MONITOR_TEMPERATURE_ALARM, 1);
+        assert_eq!(HAILO_NOTIFICATION_ID_HEALTH_MONITOR_DATAFLOW_SHUTDOWN, 2);
+        assert_eq!(HAILO_NOTIFICATION_ID_HEALTH_MONITOR_OVERCURRENT_ALARM, 3);
+        assert_eq!(HAILO_NOTIFICATION_ID_LCU_ECC_CORRECTABLE_ERROR, 4);
+        assert_eq!(HAILO_NOTIFICATION_ID_LCU_ECC_UNCORRECTABLE_ERROR, 5);
+        assert_eq!(HAILO_NOTIFICATION_ID_CPU_ECC_ERROR, 6);
+        assert_eq!(HAILO_NOTIFICATION_ID_CPU_ECC_FATAL, 7);
+        assert_eq!(HAILO_NOTIFICATION_ID_DEBUG, 8);
+        assert_eq!(HAILO_NOTIFICATION_ID_CONTEXT_SWITCH_BREAKPOINT_REACHED, 9);
+        assert_eq!(HAILO_NOTIFICATION_ID_HEALTH_MONITOR_CLOCK_CHANGED_EVENT, 10);
+        assert_eq!(HAILO_NOTIFICATION_ID_HW_INFER_MANAGER_INFER_DONE, 11);
+        assert_eq!(HAILO_NOTIFICATION_ID_CONTEXT_SWITCH_RUN_TIME_ERROR_EVENT, 12);
+        assert_eq!(HAILO_NOTIFICATION_ID_NN_CORE_CRC_ERROR_EVENT, 13);
+        assert_eq!(HAILO_NOTIFICATION_ID_THROTTLING_STATE_CHANGE_EVENT, 14);
+        assert_eq!(HAILO_NOTIFICATION_ID_COUNT, 15);
+    }
+
+    #[test]
+    fn sensor_and_logger_enum_values() {
+        assert_eq!(HAILO_SENSOR_TYPES_GENERIC, 0);
+        assert_eq!(HAILO_SENSOR_TYPES_ONSEMI_AR0220AT, 1);
+        assert_eq!(HAILO_SENSOR_TYPES_RASPICAM, 2);
+        assert_eq!(HAILO_SENSOR_TYPES_ONSEMI_AS0149AT, 3);
+        assert_eq!(HAILO_SENSOR_TYPES_HAILO8_ISP, 4);
+
+        assert_eq!(HAILO_FW_LOGGER_INTERFACE_PCIE, 0);
+        assert_eq!(HAILO_FW_LOGGER_INTERFACE_UART, 1);
+
+        assert_eq!(HAILO_FW_LOGGER_LEVEL_TRACE, 0);
+        assert_eq!(HAILO_FW_LOGGER_LEVEL_DEBUG, 1);
+        assert_eq!(HAILO_FW_LOGGER_LEVEL_INFO, 2);
+        assert_eq!(HAILO_FW_LOGGER_LEVEL_WARN, 3);
+        assert_eq!(HAILO_FW_LOGGER_LEVEL_ERROR, 4);
+        assert_eq!(HAILO_FW_LOGGER_LEVEL_FATAL, 5);
+    }
+}

@@ -51,3 +51,26 @@ pub type hailo_output_vstream = *mut hailo_output_vstream_opaque;
 /// This type is opaque in the upstream header; only a null pointer is accepted
 /// by the current API.  Pass `std::ptr::null_mut()` to `hailo_scan_devices`.
 pub type hailo_scan_devices_params_t = c_void;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::mem::size_of;
+
+    #[test]
+    fn all_handle_types_are_pointer_sized() {
+        let ptr = size_of::<*mut ()>();
+        assert_eq!(size_of::<hailo_device>(), ptr);
+        assert_eq!(size_of::<hailo_vdevice>(), ptr);
+        assert_eq!(size_of::<hailo_hef>(), ptr);
+        assert_eq!(size_of::<hailo_input_stream>(), ptr);
+        assert_eq!(size_of::<hailo_output_stream>(), ptr);
+        assert_eq!(size_of::<hailo_configured_network_group>(), ptr);
+        assert_eq!(size_of::<hailo_activated_network_group>(), ptr);
+        assert_eq!(size_of::<hailo_input_transform_context>(), ptr);
+        assert_eq!(size_of::<hailo_output_transform_context>(), ptr);
+        assert_eq!(size_of::<hailo_output_demuxer>(), ptr);
+        assert_eq!(size_of::<hailo_input_vstream>(), ptr);
+        assert_eq!(size_of::<hailo_output_vstream>(), ptr);
+    }
+}
