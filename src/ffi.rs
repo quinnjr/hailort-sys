@@ -345,7 +345,7 @@ unsafe extern "C" {
         number_of_streams: *mut usize,
     ) -> hailo_status;
 
-    pub fn hailo_hef_get_vstream_infos(
+    pub fn hailo_hef_get_all_vstream_infos(
         hef: hailo_hef,
         name: *const c_char,
         vstream_infos: *mut hailo_vstream_info_t,
@@ -399,7 +399,7 @@ unsafe extern "C" {
         network_group: hailo_activated_network_group,
     ) -> hailo_status;
 
-    pub fn hailo_release_network_group(
+    pub fn hailo_shutdown_network_group(
         network_group: hailo_configured_network_group,
     ) -> hailo_status;
 
@@ -545,16 +545,23 @@ unsafe extern "C" {
         output_vstreams: *mut hailo_output_vstream,
     ) -> hailo_status;
 
-    pub fn hailo_release_input_vstream(vstream: hailo_input_vstream) -> hailo_status;
-    pub fn hailo_release_output_vstream(vstream: hailo_output_vstream) -> hailo_status;
+    pub fn hailo_release_input_vstreams(
+        input_vstreams: *const hailo_input_vstream,
+        inputs_count: usize,
+    ) -> hailo_status;
 
-    pub fn hailo_input_vstream_write(
+    pub fn hailo_release_output_vstreams(
+        output_vstreams: *const hailo_output_vstream,
+        outputs_count: usize,
+    ) -> hailo_status;
+
+    pub fn hailo_vstream_write_raw_buffer(
         vstream: hailo_input_vstream,
         buffer: *const c_void,
         size: usize,
     ) -> hailo_status;
 
-    pub fn hailo_output_vstream_read(
+    pub fn hailo_vstream_read_raw_buffer(
         vstream: hailo_output_vstream,
         buffer: *mut c_void,
         size: usize,
@@ -1068,14 +1075,14 @@ mod tests {
             usize,
             *mut hailo_output_vstream,
         ) -> hailo_status = hailo_create_output_vstreams;
-        let _: unsafe extern "C" fn(hailo_input_vstream) -> hailo_status =
-            hailo_release_input_vstream;
-        let _: unsafe extern "C" fn(hailo_output_vstream) -> hailo_status =
-            hailo_release_output_vstream;
+        let _: unsafe extern "C" fn(*const hailo_input_vstream, usize) -> hailo_status =
+            hailo_release_input_vstreams;
+        let _: unsafe extern "C" fn(*const hailo_output_vstream, usize) -> hailo_status =
+            hailo_release_output_vstreams;
         let _: unsafe extern "C" fn(hailo_input_vstream, *const c_void, usize) -> hailo_status =
-            hailo_input_vstream_write;
+            hailo_vstream_write_raw_buffer;
         let _: unsafe extern "C" fn(hailo_output_vstream, *mut c_void, usize) -> hailo_status =
-            hailo_output_vstream_read;
+            hailo_vstream_read_raw_buffer;
         let _: unsafe extern "C" fn(
             hailo_input_vstream,
             *mut hailo_vstream_info_t,
